@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import SolutionsSection from "@/components/SolutionsSection";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import PricingSection from "@/components/PricingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
@@ -12,6 +13,7 @@ const Index = () => {
   // Scroll animation hooks for each section
   const { ref: featuresRef, isVisible: featuresVisible } = useScrollAnimation(0.15);
   const { ref: solutionsRef, isVisible: solutionsVisible } = useScrollAnimation(0.15);
+  const { ref: whyChooseRef, isVisible: whyChooseVisible } = useScrollAnimation(0.15);
   const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation(0.15);
   const { ref: pricingRef, isVisible: pricingVisible } = useScrollAnimation(0.15);
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation(0.15);
@@ -38,6 +40,14 @@ const Index = () => {
           className={`scroll-animate-left ${solutionsVisible ? 'animate-in' : ''}`}
         >
           <SolutionsSection />
+        </div>
+        
+        <div 
+          id="why-choose-us" 
+          ref={whyChooseRef}
+          className={`scroll-animate ${whyChooseVisible ? 'animate-in' : ''}`}
+        >
+          <WhyChooseUsSection />
         </div>
         
         <div 

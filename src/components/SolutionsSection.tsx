@@ -72,7 +72,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
     >
       {/* Content */}
       <motion.div 
-        className="flex-1 space-y-6 border border-primary rounded-2xl p-10"
+        className="flex-1 bg-primary/10 space-y-6 border border-primary rounded-2xl p-10"
         initial={{ opacity: 0, x: getAnimationX(true), scale: 0.95 }}
         animate={{ 
           opacity: isVisible ? 1 : 0, 
@@ -94,7 +94,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
           {solution.description}
         </p>
 
-        <ul className="space-y-3 border border-primary rounded-2xl p-2">
+        <ul className="space-y-3 border border-primary rounded-2xl p-7">
           {solution.features.map((feature, featureIndex) => (
             <motion.li 
               key={featureIndex} 

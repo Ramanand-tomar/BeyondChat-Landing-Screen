@@ -75,7 +75,7 @@ const FeaturesSection = () => {
             className={`glass-card p-6 rounded-3xl max-w-md scroll-animate-scale ${gridVisible ? 'animate-in' : ''}`}
           >
             <img 
-              src="/Ai Service.gif" 
+              src="/cute-ai-robot-wearing-headphones.png" 
               alt="AI Service Animation" 
               className="w-full h-auto rounded-2xl shadow-[0_0_40px_hsl(204_88%_53%/0.2)]"
             />

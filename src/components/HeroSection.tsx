@@ -29,70 +29,102 @@ const HeroSection = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          {/* Badge */}
-          <div 
-            ref={badgeRef}
-            className={`inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-8 scroll-animate ${badgeVisible ? 'animate-in' : ''}`}
-          >
-            <Sparkles className="w-4 h-4 text-primary" />
-            <span className="text-sm text-muted-foreground">
-              Powered by Advanced AI Technology
-            </span>
-          </div>
+        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+          {/* Left Column - Content */}
+          <div className="text-center lg:text-left">
+            {/* Badge */}
+            <div 
+              ref={badgeRef}
+              className={`inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full mb-8 scroll-animate ${badgeVisible ? 'animate-in' : ''}`}
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm text-muted-foreground">
+                Powered by Advanced AI Technology
+              </span>
+            </div>
 
-          {/* Headline */}
-          <h1 
-            ref={headlineRef}
-            className={`font-display text-5xl md:text-7xl lg:text-8xl font-bold leading-tight mb-6 scroll-animate stagger-1 ${headlineVisible ? 'animate-in' : ''}`}
-          >
-            The Future of
-            <br />
-            <span className="gradient-text">AI Communication</span>
-          </h1>
+            {/* Headline */}
+            <h1 
+              ref={headlineRef}
+              className={`font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 scroll-animate stagger-1 ${headlineVisible ? 'animate-in' : ''}`}
+            >
+              The Future of
+              <br />
+              <span className="gradient-text">AI Communication</span>
+            </h1>
 
-          {/* Subheadline */}
-          <p 
-            ref={subRef}
-            className={`text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 text-balance scroll-animate stagger-2 ${subVisible ? 'animate-in' : ''}`}
-          >
-            Transform your business with real-time AI voice, video, and messaging 
-            solutions. Enterprise-grade security meets cutting-edge intelligence.
-          </p>
+            {/* Subheadline */}
+            <p 
+              ref={subRef}
+              className={`text-xl md:text-2xl text-muted-foreground mb-10 text-balance scroll-animate stagger-2 ${subVisible ? 'animate-in' : ''}`}
+            >
+              Transform your business with real-time AI voice, video, and messaging 
+              solutions. Enterprise-grade security meets cutting-edge intelligence.
+            </p>
+        
 
-          {/* CTA Buttons */}
-          <div 
-            ref={ctaRef}
-            className={`flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 scroll-animate stagger-3 ${ctaVisible ? 'animate-in' : ''}`}
-          >
-            <Button variant="hero" size="xl" className="group">
-              Start Free Trial
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Button>
-            <Button variant="glass" size="xl" className="group">
-              <Play className="w-5 h-5" />
-              Watch Demo
-            </Button>
-          </div>
+            {/* CTA Buttons */}
+            <div 
+              ref={ctaRef}
+              className={`flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-16 scroll-animate stagger-3 ${ctaVisible ? 'animate-in' : ''}`}
+            >
+              <Button variant="hero" size="xl" className="group">
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="glass" size="xl" className="group">
+                <Play className="w-5 h-5" />
+                Watch Demo
+              </Button>
+            </div>
 
-          {/* Stats */}
-          <div 
-            ref={statsRef}
-            className={`grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto scroll-animate stagger-4 ${statsVisible ? 'animate-in' : ''}`}
-          >
-            {[
-              { value: "10M+", label: "Messages Sent" },
-              { value: "99.9%", label: "Uptime SLA" },
-              { value: "150+", label: "Countries" },
-              { value: "<50ms", label: "Latency" },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="font-display text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.value}
+            {/* Stats */}
+            <div 
+              ref={statsRef}
+              className={`grid grid-cols-2 gap-8 scroll-animate stagger-4 ${statsVisible ? 'animate-in' : ''}`}
+            >
+              {[
+                { value: "10M+", label: "Messages Sent" },
+                { value: "99.9%", label: "Uptime SLA" },
+                { value: "150+", label: "Countries" },
+                { value: "<50ms", label: "Latency" },
+              ].map((stat, index) => (
+                <div key={index} className="text-center lg:text-left">
+                  <div className="font-display text-3xl md:text-4xl font-bold gradient-text mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
-                <div className="text-sm text-muted-foreground">{stat.label}</div>
-              </div>
-            ))}
+              ))}
+            </div>
+
+            {/* AI Robot Character - Content Side Decoration */}
+            <div className="absolute -bottom-10 -left-10 w-32 h-32 md:w-40 md:h-40 lg:hidden opacity-80 animate-float pointer-events-none" style={{ animationDelay: "0.5s" }}>
+              <img 
+                src="/cute-ai-robot-wearing-headphones.png" 
+                alt="AI Assistant" 
+                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.4)] animate-pulse-glow"
+              />
+            </div>
+          </div>
+
+          {/* Right Column - AI Character Video */}
+          <div className="relative lg:block hidden">
+            <div className="glass-card p-4 rounded-3xl">
+              <video
+                className="w-full h-auto rounded-2xl shadow-[0_0_60px_hsl(204_88%_53%/0.3)]"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src="/ai charcter video.webm" type="video/webm" />
+                {/* Fallback for browsers that don't support video */}
+                <div className="w-full aspect-video bg-muted/30 rounded-2xl flex items-center justify-center">
+                  <p className="text-muted-foreground">AI Character Demo</p>
+                </div>
+              </video>
+            </div>
           </div>
         </div>
 
@@ -100,15 +132,6 @@ const HeroSection = () => {
         <div className="absolute top-1/4 left-10 w-20 h-20 rounded-2xl gradient-border opacity-30 animate-float" style={{ animationDelay: "0s" }} />
         <div className="absolute bottom-1/3 right-10 w-16 h-16 rounded-full gradient-border opacity-20 animate-float" style={{ animationDelay: "2s" }} />
         <div className="absolute top-1/2 right-1/4 w-12 h-12 rounded-xl gradient-border opacity-25 animate-float" style={{ animationDelay: "4s" }} />
-        
-        {/* AI Robot Image - Hero Visual */}
-        <div className="absolute top-1/4 -right-10 md:right-10 w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 opacity-90 animate-float pointer-events-none" style={{ animationDelay: "1s" }}>
-          <img 
-            src="/cute-ai-robot-wearing-headphones.png" 
-            alt="AI Robot Assistant" 
-            className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(59,130,246,0.3)] animate-pulse-glow"
-          />
-        </div>
       </div>
     </section>
   );
