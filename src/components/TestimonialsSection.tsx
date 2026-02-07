@@ -40,24 +40,24 @@ const TestimonialsSection = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation(0.1);
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="mobile-section-padding relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/3 rounded-full blur-[150px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Logos */}
         <div 
           ref={logosRef}
-          className={`mb-20 scroll-animate ${logosVisible ? 'animate-in' : ''}`}
+          className={`mb-12 md:mb-20 scroll-animate ${logosVisible ? 'animate-in' : ''}`}
         >
-          <p className="text-center text-muted-foreground mb-8">
+          <p className="text-center text-sm md:text-base text-muted-foreground mb-6 md:mb-8">
             Trusted by leading companies worldwide
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-16">
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className="text-xl md:text-2xl font-display font-bold text-muted-foreground/40 hover:text-primary/60 transition-colors"
+                className="text-lg md:text-xl lg:text-2xl font-display font-bold text-muted-foreground/40 hover:text-primary/60 transition-colors"
               >
                 {logo}
               </div>
@@ -68,12 +68,12 @@ const TestimonialsSection = () => {
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-16 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
+          className={`text-center max-w-3xl mx-auto mb-12 md:mb-16 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
         >
           <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Testimonials
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-foreground">
             Loved by Teams
             <br />
             <span className="gradient-text">Everywhere</span>
@@ -81,11 +81,11 @@ const TestimonialsSection = () => {
         </div>
 
         {/* Testimonials Grid */}
-        <div ref={gridRef} className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial, index) => (
             <div
               key={index}
-              className={`glass-card p-8 rounded-3xl hover:shadow-[0_0_40px_hsl(204_88%_53%/0.1)] transition-all duration-500 group scroll-animate-scale stagger-${index + 1} ${gridVisible ? 'animate-in' : ''}`}
+              className={`glass-card p-6 md:p-8 rounded-3xl hover:shadow-[0_0_40px_hsl(204_88%_53%/0.1)] transition-all duration-500 group scroll-animate-scale stagger-${index + 1} ${gridVisible ? 'animate-in' : ''}`}
             >
               {/* Stars */}
               <div className="flex gap-1 mb-6">
@@ -98,7 +98,7 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Quote */}
-              <p className="text-lg text-foreground mb-8 leading-relaxed">
+              <p className="text-base md:text-lg text-foreground mb-6 md:mb-8 leading-relaxed">
                 "{testimonial.quote}"
               </p>
 

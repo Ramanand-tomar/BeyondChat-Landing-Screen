@@ -81,7 +81,7 @@ const PricingCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) 
         delay: stackDelay,
         ease: [0.25, 0.46, 0.45, 0.94]
       }}
-      className={`relative rounded-3xl p-8 transition-all duration-500 hover:-translate-y-2 hover:scale-105 ${
+      className={`relative rounded-3xl p-6 md:p-8 transition-all duration-500 hover:-translate-y-2 hover:scale-105 ${
         plan.popular
           ? "glass-card border-primary/50 shadow-[0_0_60px_hsl(204_88%_53%/0.15)]"
           : "glass-card"
@@ -105,13 +105,13 @@ const PricingCard = ({ plan, index }: { plan: typeof plans[0]; index: number }) 
 
       {/* Plan Header */}
       <div className="text-center mb-8">
-        <h3 className="font-display text-2xl font-bold mb-2 text-foreground">{plan.name}</h3>
-        <p className="text-muted-foreground text-sm mb-6">{plan.description}</p>
+        <h3 className="font-display text-xl md:text-2xl font-bold mb-2 text-foreground">{plan.name}</h3>
+        <p className="text-muted-foreground text-xs md:text-sm mb-6">{plan.description}</p>
         <div className="flex items-baseline justify-center gap-1">
           {plan.price !== "Custom" && (
             <span className="text-muted-foreground text-lg">$</span>
           )}
-          <span className="font-display text-5xl font-bold gradient-text">
+          <span className="font-display text-4xl md:text-5xl font-bold gradient-text">
             {plan.price}
           </span>
           {plan.price !== "Custom" && (
@@ -154,11 +154,11 @@ const PricingSection = () => {
   const scrollDirection = useScrollDirection();
 
   return (
-    <section id="pricing" className="py-32 relative">
+    <section id="pricing" className="mobile-section-padding relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/20 to-transparent" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <motion.div 
           ref={headerRef}
@@ -168,24 +168,24 @@ const PricingSection = () => {
             y: headerVisible ? 0 : (scrollDirection === 'down' ? 40 : -40)
           }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-20"
+          className="text-center max-w-3xl mx-auto mb-12 md:mb-20"
         >
           <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Pricing
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground">
             Simple, Transparent
             <br />
             <span className="gradient-text">Pricing</span>
           </h2>
-          <p className="text-xl text-muted-foreground text-balance">
+          <p className="text-lg md:text-xl text-muted-foreground text-balance">
             Choose the plan that fits your needs. All plans include our core features 
             with no hidden fees.
           </p>
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
           {plans.map((plan, index) => (
             <PricingCard key={index} plan={plan} index={index} />
           ))}

@@ -97,19 +97,10 @@ const HeroSection = () => {
                 </div>
               ))}
             </div>
-
-            {/* AI Robot Character - Content Side Decoration */}
-            <div className="absolute -bottom-10 -left-10 w-32 h-32 md:w-40 md:h-40 lg:hidden opacity-80 animate-float pointer-events-none" style={{ animationDelay: "0.5s" }}>
-              <img 
-                src="/cute-ai-robot-wearing-headphones.png" 
-                alt="AI Assistant" 
-                className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(59,130,246,0.4)] animate-pulse-glow"
-              />
-            </div>
           </div>
 
           {/* Right Column - AI Character Video */}
-          <div className="relative lg:block hidden">
+          <div className="relative">
             <div className="glass-card p-4 rounded-3xl">
               <video
                 className="w-full h-auto rounded-2xl shadow-[0_0_60px_hsl(204_88%_53%/0.3)]"

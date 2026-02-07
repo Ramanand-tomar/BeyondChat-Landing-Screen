@@ -66,13 +66,14 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
   return (
     <div
       ref={ref}
+
       className={`flex flex-col ${
         isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-      } gap-12 lg:gap-20 items-center`}
+      } gap-8 lg:gap-20 items-center`}
     >
       {/* Content */}
       <motion.div 
-        className="flex-1 bg-primary/10 space-y-6 border border-primary rounded-2xl p-10"
+        className="flex-1 bg-primary/10 space-y-4 md:space-y-6 border border-primary rounded-2xl p-6 md:p-10"
         initial={{ opacity: 0, x: getAnimationX(true), scale: 0.95 }}
         animate={{ 
           opacity: isVisible ? 1 : 0, 
@@ -82,19 +83,19 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
         transition={{ duration: 0.6 }}
       >
         <div>
-          <span className="text-primary font-semibold text-sm uppercase tracking-wider">
+          <span className="text-primary font-semibold text-xs md:text-sm uppercase tracking-wider">
             {solution.subtitle}
           </span>
-          <h3 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mt-2 text-foreground">
+          <h3 className="font-display text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mt-2 text-foreground">
             {solution.title}
           </h3>
         </div>
         
-        <p className="text-xl text-muted-foreground leading-relaxed">
+        <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
           {solution.description}
         </p>
 
-        <ul className="space-y-3 border border-primary rounded-2xl p-7">
+        <ul className="space-y-2 md:space-y-3 border border-primary rounded-2xl p-4 md:p-7">
           {solution.features.map((feature, featureIndex) => (
             <motion.li 
               key={featureIndex} 
@@ -256,21 +257,21 @@ const SolutionsSection = () => {
   const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
 
   return (
-    <section id="solutions" className="py-32 relative overflow-hidden">
+    <section id="solutions" className="mobile-section-padding relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[150px]" />
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
+          className={`text-center max-w-3xl mx-auto mb-12 md:mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
         >
           <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Solutions
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-foreground">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground">
             Powerful Tools for
             <br />
             <span className="gradient-text">Every Use Case</span>
@@ -278,7 +279,7 @@ const SolutionsSection = () => {
         </div>
 
         {/* Solutions */}
-        <div className="space-y-32">
+        <div className="space-y-16 md:space-y-24 lg:space-y-32">
           {solutions.map((solution, index) => (
             <SolutionItem key={index} solution={solution} index={index} />
           ))}

@@ -173,8 +173,83 @@
     border-color: hsl(var(--primary) / 0.5);
   }
 
+  /* Mobile-optimized feature card */
+  @media (max-width: 768px) {
+    .feature-card {
+      @apply p-6;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+  }
+
   .nav-link {
     @apply relative text-muted-foreground hover:text-foreground transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-primary);
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Mobile-specific utilities */
+  .mobile-padding-sm {
+    @apply p-4 md:p-6 lg:p-8;
+  }
+
+  .mobile-padding-md {
+    @apply p-6 md:p-8 lg:p-10;
+  }
+
+  .mobile-padding-lg {
+    @apply p-6 md:p-12 lg:p-20;
+  }
+
+  .mobile-section-padding {
+    @apply py-16 md:py-24 lg:py-32;
+  }
+
+  .mobile-gap-sm {
+    @apply gap-4 md:gap-6;
+  }
+
+  .mobile-gap-md {
+    @apply gap-6 md:gap-8 lg:gap-12;
+  }
+
+  .mobile-gap-lg {
+    @apply gap-8 md:gap-12 lg:gap-20;
+  }
+
+  /* Scroll Animation Classes */
+  .scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .scroll-animate.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile-optimized scroll animations */
+  @media (max-width: 768px) {
+    .scroll-animate {
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
   }
 
   .nav-link::after {
@@ -204,6 +279,7 @@
     transform: translateY(0);
   }
 
+
   .scroll-animate-left {
     opacity: 0;
     transform: translateX(-60px);
@@ -213,6 +289,13 @@
   .scroll-animate-left.animate-in {
     opacity: 1;
     transform: translateX(0);
+  }
+
+  @media (max-width: 768px) {
+    .scroll-animate-left {
+      transform: translateX(-30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
   }
 
   .scroll-animate-right {
@@ -226,6 +309,13 @@
     transform: translateX(0);
   }
 
+  @media (max-width: 768px) {
+    .scroll-animate-right {
+      transform: translateX(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+  }
+
   .scroll-animate-scale {
     opacity: 0;
     transform: scale(0.9);
@@ -236,6 +326,14 @@
     opacity: 1;
     transform: scale(1);
   }
+
+  @media (max-width: 768px) {
+    .scroll-animate-scale {
+      transform: scale(0.95);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+  }
+
 
   .stagger-1 {
     transition-delay: 0.1s;

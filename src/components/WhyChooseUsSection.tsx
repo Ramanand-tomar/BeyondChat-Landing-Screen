@@ -41,30 +41,30 @@ const WhyChooseUsSection = () => {
   const { ref: imageRef, isVisible: imageVisible } = useScrollAnimation(0.15);
 
   return (
-    <section className="py-32 relative overflow-hidden">
+    <section className="mobile-section-padding relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-muted/30 via-transparent to-muted/30" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
+          className={`text-center max-w-3xl mx-auto mb-12 md:mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
         >
           <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Why Choose Us
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
             The Smart Choice for
             <br />
             <span className="gradient-text">Modern Businesses</span>
           </h2>
-          <p className="text-xl text-muted-foreground text-balance">
+          <p className="text-lg md:text-xl text-muted-foreground text-balance">
             Join thousands of companies that trust us to power their AI communication infrastructure
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 lg:gap-16 items-center max-w-7xl mx-auto">
           {/* Left Column - Image */}
           <motion.div 
             ref={imageRef}
@@ -77,7 +77,7 @@ const WhyChooseUsSection = () => {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative"
           >
-            <div className="glass-card p-6 rounded-3xl">
+            <div className="glass-card p-4 md:p-6 rounded-3xl">
               <img 
                 src="/Multi-ai-agent.avif" 
                 alt="Multi AI Agent System" 
@@ -85,13 +85,13 @@ const WhyChooseUsSection = () => {
               />
             </div>
             
-            {/* Decorative Elements */}
-            <div className="absolute -top-6 -left-6 w-24 h-24 rounded-2xl gradient-border opacity-30 animate-float" style={{ animationDelay: "0s" }} />
-            <div className="absolute -bottom-6 -right-6 w-20 h-20 rounded-full gradient-border opacity-25 animate-float" style={{ animationDelay: "2s" }} />
+            {/* Decorative Elements - Hidden on mobile */}
+            <div className="hidden md:block absolute -top-6 -left-6 w-24 h-24 rounded-2xl gradient-border opacity-30 animate-float" style={{ animationDelay: "0s" }} />
+            <div className="hidden md:block absolute -bottom-6 -right-6 w-20 h-20 rounded-full gradient-border opacity-25 animate-float" style={{ animationDelay: "2s" }} />
           </motion.div>
 
           {/* Right Column - Reasons */}
-          <div ref={contentRef} className="space-y-6">
+          <div ref={contentRef} className="space-y-4 md:space-y-6">
             {reasons.map((reason, index) => (
               <motion.div
                 key={index}
@@ -105,17 +105,17 @@ const WhyChooseUsSection = () => {
                   delay: index * 0.1,
                   ease: [0.25, 0.46, 0.45, 0.94]
                 }}
-                className="glass-card p-6 rounded-2xl hover:shadow-[0_0_30px_hsl(204_88%_53%/0.15)] transition-all duration-300 group"
+                className="glass-card p-4 md:p-6 rounded-2xl hover:shadow-[0_0_30px_hsl(204_88%_53%/0.15)] transition-all duration-300 group"
               >
                 <div className="flex items-start gap-4">
                   {/* Icon */}
-                  <div className={`w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
-                    <reason.icon className="w-6 h-6 text-primary-foreground" />
+                  <div className={`w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300`}>
+                    <reason.icon className="w-5 h-5 md:w-6 md:h-6 text-primary-foreground" />
                   </div>
                   
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="font-display text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="font-display text-lg md:text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
                       {reason.title}
                     </h3>
                     <p className="text-muted-foreground leading-relaxed">

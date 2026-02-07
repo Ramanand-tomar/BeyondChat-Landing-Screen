@@ -45,34 +45,34 @@ const FeaturesSection = () => {
   const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation(0.05);
 
   return (
-    <section id="features" className="py-32 relative">
+    <section id="features" className="mobile-section-padding relative">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/30 to-transparent" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
         <div 
           ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
+          className={`text-center max-w-3xl mx-auto mb-12 md:mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
         >
           <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
             Features
           </span>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
             Everything You Need to
             <br />
             <span className="gradient-text">Communicate Smarter</span>
           </h2>
-          <p className="text-xl text-muted-foreground text-balance">
+          <p className="text-lg md:text-xl text-muted-foreground text-balance">
             A complete suite of AI-powered tools designed for modern businesses 
             that demand excellence in communication.
           </p>
         </div>
 
         {/* AI Service GIF - Visual Centerpiece */}
-        <div className="flex justify-center mb-20">
+        <div className="flex justify-center mb-12 md:mb-20">
           <div 
-            className={`glass-card p-6 rounded-3xl max-w-md scroll-animate-scale ${gridVisible ? 'animate-in' : ''}`}
+            className={`glass-card p-4 md:p-6 rounded-3xl max-w-xs md:max-w-md scroll-animate-scale ${gridVisible ? 'animate-in' : ''}`}
           >
             <img 
               src="/cute-ai-robot-wearing-headphones.png" 
@@ -83,22 +83,22 @@ const FeaturesSection = () => {
         </div>
 
         {/* Features Grid */}
-        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {features.map((feature, index) => (
             <div
               key={index}
               className={`feature-card group scroll-animate-scale stagger-${index + 1} ${gridVisible ? 'animate-in' : ''}`}
             >
               {/* Icon */}
-              <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <feature.icon className="w-7 h-7 text-primary-foreground" />
+              <div className={`w-12 h-12 md:w-14 md:h-14 rounded-2xl bg-gradient-to-br ${feature.gradient} flex items-center justify-center mb-4 md:mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <feature.icon className="w-6 h-6 md:w-7 md:h-7 text-primary-foreground" />
               </div>
               
               {/* Content */}
-              <h3 className="font-display text-2xl font-bold mb-4 text-foreground group-hover:text-primary transition-all duration-300">
+              <h3 className="font-display text-xl md:text-2xl font-bold mb-3 md:mb-4 text-foreground group-hover:text-primary transition-all duration-300">
                 {feature.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
                 {feature.description}
               </p>
             </div>
