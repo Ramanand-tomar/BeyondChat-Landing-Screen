@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
+import HowItWorksSection from "@/components/HowItWorksSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import PricingSection from "@/components/PricingSection";
@@ -12,6 +13,7 @@ import useScrollAnimation from "@/hooks/useScrollAnimation";
 const Index = () => {
   // Scroll animation hooks for each section
   const { ref: featuresRef, isVisible: featuresVisible } = useScrollAnimation(0.15);
+  const { ref: howItWorksRef, isVisible: howItWorksVisible } = useScrollAnimation(0.15);
   const { ref: solutionsRef, isVisible: solutionsVisible } = useScrollAnimation(0.15);
   const { ref: whyChooseRef, isVisible: whyChooseVisible } = useScrollAnimation(0.15);
   const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation(0.15);
@@ -32,6 +34,14 @@ const Index = () => {
           className={`scroll-animate ${featuresVisible ? 'animate-in' : ''}`}
         >
           <FeaturesSection />
+        </div>
+        
+        <div 
+          id="how-it-works" 
+          ref={howItWorksRef}
+          className={`scroll-animate-scale ${howItWorksVisible ? 'animate-in' : ''}`}
+        >
+          <HowItWorksSection />
         </div>
         
         <div 
@@ -80,4 +90,3 @@ const Index = () => {
 };
 
 export default Index;
-

@@ -1,37 +1,37 @@
-import { CheckCircle2, Shield, Zap, Users, TrendingUp, Award } from "lucide-react";
+import { CheckCircle2, Shield, Zap, Users, TrendingUp, Award, Video, Globe } from "lucide-react";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 import { motion } from "framer-motion";
 
 const reasons = [
   {
-    icon: Shield,
-    title: "Enterprise-Grade Security",
-    description: "Bank-level encryption, SOC 2 Type II certified, and GDPR compliant. Your data is protected with military-grade security protocols.",
+    icon: Video,
+    title: "Crystal Clear 4K Video",
+    description: "Experience stunning 4K video quality with HD audio. Advanced noise cancellation and adaptive bitrate ensure perfect calls every time.",
+  },
+  {
+    icon: Globe,
+    title: "Real-Time AI Translation",
+    description: "Break language barriers with instant translation in 100+ languages. Communicate seamlessly with global teams and clients.",
   },
   {
     icon: Zap,
-    title: "Lightning-Fast Performance",
-    description: "Sub-50ms latency with our global edge network. Experience real-time communication without delays or interruptions.",
+    title: "Global Infrastructure",
+    description: "<100ms latency worldwide with our edge network. Lightning-fast video calls from anywhere on the planet.",
   },
   {
     icon: Users,
     title: "24/7 Expert Support",
-    description: "Dedicated support team available around the clock. Get help when you need it with our industry-leading response times.",
+    description: "Dedicated video call specialists available around the clock. Get help when you need it with industry-leading response times.",
   },
   {
-    icon: TrendingUp,
-    title: "Proven Track Record",
-    description: "Trusted by 10,000+ businesses worldwide. Join the companies that have transformed their communication with our platform.",
-  },
-  {
-    icon: Award,
-    title: "Industry Recognition",
-    description: "Award-winning AI technology recognized by leading industry analysts. Innovation that sets the standard.",
+    icon: Shield,
+    title: "Enterprise Security",
+    description: "End-to-end encryption, SOC 2 Type II certified, and GDPR compliant. Military-grade security for your video communications.",
   },
   {
     icon: CheckCircle2,
     title: "99.9% Uptime SLA",
-    description: "Guaranteed reliability with automatic failover and redundancy. Your business never stops, and neither do we.",
+    description: "Guaranteed reliability with automatic failover and redundancy. Your video calls never drop, and neither do we.",
   },
 ];
 
@@ -55,12 +55,12 @@ const WhyChooseUsSection = () => {
             Why Choose Us
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
-            The Smart Choice for
+            The Best Video Call
             <br />
-            <span className="gradient-text">Modern Businesses</span>
+            <span className="gradient-text">Platform for Teams</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-balance">
-            Join thousands of companies that trust us to power their AI communication infrastructure
+            Join thousands of companies that trust us to power their video communication infrastructure
           </p>
         </div>
 

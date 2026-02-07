@@ -34,11 +34,11 @@ const CTASection = () => {
               <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground">
                 Ready to Transform Your
                 <br />
-                <span className="gradient-text">Communication?</span>
+                <span className="gradient-text">Video Meetings?</span>
               </h2>
 
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 md:mb-10">
-                Join thousands of businesses already using BeyondChatsAI to connect with customers in smarter, more meaningful ways.
+                Join thousands of teams already using our AI-powered video call platform to collaborate smarter, faster, and across any language.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

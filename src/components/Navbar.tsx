@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X, Zap, ChevronDown } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { useScrollDirection } from "@/hooks/useScrollDirection";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -18,7 +24,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
 
       // Scroll spy - determine active section
-      const sections = ["hero", "features", "solutions", "testimonials", "pricing", "cta"];
+      const sections = ["hero", "features", "how-it-works", "solutions", "testimonials", "pricing", "cta"];
       const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
@@ -38,10 +44,18 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Features", href: "features" },
-    { name: "Solutions", href: "solutions" },
+    { name: "Platform", href: "solutions" },
     { name: "Pricing", href: "pricing" },
-    { name: "Testimonials", href: "testimonials" },
+    { name: "Customers", href: "testimonials" },
+  ];
+
+  const featureDropdownItems = [
+    { name: "Live Transcription", description: "Real-time speech-to-text" },
+    { name: "AI Translation", description: "100+ languages" },
+    { name: "Smart Summaries", description: "Meeting notes & action items" },
+    { name: "Screen Sharing", description: "HD quality with annotations" },
+    { name: "Cloud Recording", description: "Searchable transcripts" },
+    { name: "Virtual Backgrounds", description: "AI-powered effects" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -117,6 +131,29 @@ const Navbar = () => {
       {isMobileMenuOpen && (
         <div className="md:hidden bg-background/95 backdrop-blur-xl mt-2 mx-4 p-6 rounded-2xl border border-border shadow-lg animate-fade-in">
           <div className="flex flex-col gap-4">
+            {/* Mobile Features Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex items-center justify-between w-full py-2 text-left transition-colors text-muted-foreground hover:text-foreground">
+                <span className="font-medium">Features</span>
+                <ChevronDown className="w-4 h-4" />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="start" className="w-full">
+                {featureDropdownItems.map((item, index) => (
+                  <DropdownMenuItem
+                    key={index}
+                    className="flex flex-col items-start py-3 cursor-pointer"
+                    onClick={() => {
+                      scrollToSection("features");
+                      setIsMobileMenuOpen(false); // Close mobile menu after selection
+                    }}
+                  >
+                    <div className="font-semibold text-sm">{item.name}</div>
+                    <div className="text-xs text-muted-foreground">{item.description}</div>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {navLinks.map((link) => (
               <a
                 key={link.name}

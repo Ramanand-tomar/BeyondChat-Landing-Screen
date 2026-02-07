@@ -1,41 +1,41 @@
-import { Mic, Video, MessageCircle, Shield, Zap, Globe } from "lucide-react";
+import { Mic, Video, Shield, Zap, Globe, Sparkles } from "lucide-react";
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const features = [
   {
     icon: Mic,
-    title: "AI Voice Chatbot",
-    description: "Natural language voice interactions powered by advanced AI. Handle customer calls 24/7 with human-like conversations.",
-    gradient: "from-primary to-[hsl(220_80%_60%)]",
-  },
-  {
-    icon: Video,
-    title: "AI Video Calling",
-    description: "Crystal-clear video calls with real-time AI translation, transcription, and intelligent meeting summaries.",
-    gradient: "from-[hsl(220_80%_60%)] to-primary",
-  },
-  {
-    icon: MessageCircle,
-    title: "Bulk WhatsApp",
-    description: "Send personalized messages at scale. Smart scheduling, analytics, and automation for maximum engagement.",
-    gradient: "from-primary to-[hsl(180_70%_50%)]",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Security",
-    description: "End-to-end encryption, SOC 2 compliance, and GDPR ready. Your data security is our priority.",
-    gradient: "from-[hsl(180_70%_50%)] to-primary",
-  },
-  {
-    icon: Zap,
-    title: "Lightning Fast",
-    description: "Sub-50ms latency with our global edge network. Seamless real-time communication anywhere.",
+    title: "Live Transcription",
+    description: "Real-time speech-to-text with speaker identification. Automatically capture every word spoken during your video calls with 99% accuracy.",
     gradient: "from-primary to-[hsl(220_80%_60%)]",
   },
   {
     icon: Globe,
-    title: "Global Scale",
-    description: "Infrastructure in 150+ countries. Automatic failover and load balancing for ultimate reliability.",
+    title: "AI Translation",
+    description: "Break language barriers with real-time translation in 100+ languages. Communicate seamlessly with global teams and clients.",
+    gradient: "from-[hsl(220_80%_60%)] to-primary",
+  },
+  {
+    icon: Sparkles,
+    title: "Smart Summaries",
+    description: "AI-generated meeting summaries with action items and key decisions. Never miss important details from your video calls.",
+    gradient: "from-primary to-[hsl(180_70%_50%)]",
+  },
+  {
+    icon: Video,
+    title: "HD Screen Sharing",
+    description: "Share your screen in crystal-clear quality with annotations and laser pointer. Perfect for presentations and collaboration.",
+    gradient: "from-[hsl(180_70%_50%)] to-primary",
+  },
+  {
+    icon: Zap,
+    title: "Cloud Recording",
+    description: "Automatic cloud recording with searchable transcripts. Access and share your video calls anytime, anywhere.",
+    gradient: "from-primary to-[hsl(220_80%_60%)]",
+  },
+  {
+    icon: Shield,
+    title: "Virtual Backgrounds",
+    description: "AI-powered background removal and virtual backgrounds. Look professional from anywhere with advanced video effects.",
     gradient: "from-[hsl(220_80%_60%)] to-primary",
   },
 ];
@@ -59,13 +59,13 @@ const FeaturesSection = () => {
             Features
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
-            Everything You Need to
+            Everything You Need for
             <br />
-            <span className="gradient-text">Communicate Smarter</span>
+            <span className="gradient-text">Powerful Video Calls</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-balance">
-            A complete suite of AI-powered tools designed for modern businesses 
-            that demand excellence in communication.
+            AI-powered video calling features designed for modern teams 
+            that demand excellence in virtual collaboration.
           </p>
         </div>
 

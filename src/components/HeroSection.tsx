@@ -48,9 +48,9 @@ const HeroSection = () => {
               ref={headlineRef}
               className={`font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 scroll-animate stagger-1 ${headlineVisible ? 'animate-in' : ''}`}
             >
-              The Future of
+              AI-Powered
               <br />
-              <span className="gradient-text">AI Communication</span>
+              <span className="gradient-text">Video Call Agent</span>
             </h1>
 
             {/* Subheadline */}
@@ -58,8 +58,8 @@ const HeroSection = () => {
               ref={subRef}
               className={`text-xl md:text-2xl text-muted-foreground mb-10 text-balance scroll-animate stagger-2 ${subVisible ? 'animate-in' : ''}`}
             >
-              Transform your business with real-time AI voice, video, and messaging 
-              solutions. Enterprise-grade security meets cutting-edge intelligence.
+              Transform your video meetings with AI-powered transcription, real-time translation, 
+              and intelligent summaries. Crystal-clear 4K video meets enterprise-grade intelligence.
             </p>
         
 
@@ -84,10 +84,10 @@ const HeroSection = () => {
               className={`grid grid-cols-2 gap-8 scroll-animate stagger-4 ${statsVisible ? 'animate-in' : ''}`}
             >
               {[
-                { value: "10M+", label: "Messages Sent" },
-                { value: "99.9%", label: "Uptime SLA" },
-                { value: "150+", label: "Countries" },
-                { value: "<50ms", label: "Latency" },
+                { value: "50M+", label: "Video Calls" },
+                { value: "100+", label: "Languages" },
+                { value: "4K", label: "Video Quality" },
+                { value: "<100ms", label: "Latency" },
               ].map((stat, index) => (
                 <div key={index} className="text-center lg:text-left">
                   <div className="font-display text-3xl md:text-4xl font-bold gradient-text mb-2">

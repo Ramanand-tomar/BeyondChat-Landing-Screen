@@ -1,292 +1,386 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight, CheckCircle2, Play, Shield, Zap, Users, Globe, Clock } from "lucide-react";
 import { motion } from "framer-motion";
-import useScrollAnimation from "@/hooks/useScrollAnimation";
-import { useScrollDirection } from "@/hooks/useScrollDirection";
+import { useEffect, useRef, useState } from "react";
 
 const solutions = [
   {
-    title: "AI Voice Chatbot",
-    subtitle: "24/7 Intelligent Conversations",
-    description: "Deploy sophisticated AI voice agents that understand context, handle complex queries, and seamlessly escalate to human agents when needed.",
+    title: "AI Video Call Platform",
+    subtitle: "Enterprise-Grade Communication",
+    description: "Transform your video meetings with AI-powered features that boost productivity, break down language barriers, and provide actionable insights. Crystal-clear 4K video quality meets enterprise-grade intelligence.",
     features: [
-      "Natural language processing",
-      "Multi-language support",
-      "Sentiment analysis",
-      "Smart call routing",
-      "Real-time analytics",
+      "Live transcription with speaker identification",
+      "Real-time translation in 100+ languages",
+      "AI-generated meeting summaries & action items",
+      "HD screen sharing with annotations",
+      "Cloud recording with searchable transcripts",
+      "Virtual backgrounds & video effects",
+      "End-to-end encryption & security",
+      "Global infrastructure with <100ms latency",
     ],
-    image: "voice",
-  },
-  {
-    title: "AI Video Calling",
-    subtitle: "Next-Gen Video Communication",
-    description: "Transform your video meetings with AI-powered features that boost productivity and break down language barriers.",
-    features: [
-      "Live transcription",
-      "Real-time translation",
-      "Meeting summaries",
-      "Action item extraction",
-      "Screen sharing & recording",
+    stats: [
+      { label: "Video Quality", value: "4K UHD", icon: Zap },
+      { label: "Participants", value: "Unlimited", icon: Users },
+      { label: "Languages", value: "100+", icon: Globe },
+      { label: "Latency", value: "<100ms", icon: Clock },
     ],
-    image: "video",
+    videoSrc: "/Real-time-video-call.mp4",
+    demoType: "video",
   },
-  // {
-  //   title: "Bulk WhatsApp Messaging",
-  //   subtitle: "Scale Your Outreach",
-  //   description: "Reach millions of customers with personalized WhatsApp campaigns. Smart automation meets powerful analytics.",
-  //   features: [
-  //     "Template management",
-  //     "Scheduled campaigns",
-  //     "A/B testing",
-  //     "Delivery tracking",
-  //     "Automated responses",
-  //   ],
-  //   image: "whatsapp",
-  // },
 ];
 
-const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; index: number }) => {
-  const { ref, isVisible } = useScrollAnimation(0.15);
-  const scrollDirection = useScrollDirection();
-  const isEven = index % 2 === 0;
 
-  // Calculate animation direction based on scroll direction
-  const getAnimationX = (isContent: boolean) => {
-    if (!isVisible) {
-      if (scrollDirection === 'down') {
-        return isContent ? (isEven ? -60 : 60) : (isEven ? 60 : -60);
+const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; index: number }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
       } else {
-        return isContent ? (isEven ? 60 : -60) : (isEven ? -60 : 60);
+        videoRef.current.play();
       }
+      setIsPlaying(!isPlaying);
     }
-    return 0;
   };
 
   return (
-    <div
-      ref={ref}
+    <div className="relative">
+      {/* Floating Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <motion.div
+          className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-blue-500/10 to-cyan-500/10 blur-3xl"
+          animate={{ 
+            x: [0, 20, 0],
+            y: [0, -20, 0],
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 blur-3xl"
+          animate={{ 
+            x: [0, -30, 0],
+            y: [0, 30, 0],
+          }}
+          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+        />
+      </div>
 
-      className={`flex flex-col ${
-        isEven ? "lg:flex-row" : "lg:flex-row-reverse"
-      } gap-8 lg:gap-20 items-center`}
-    >
-      {/* Content */}
-      <motion.div 
-        className="flex-1 bg-primary/10 space-y-4 md:space-y-6 border border-primary rounded-2xl p-6 md:p-10"
-        initial={{ opacity: 0, x: getAnimationX(true), scale: 0.95 }}
-        animate={{ 
-          opacity: isVisible ? 1 : 0, 
-          x: isVisible ? 0 : getAnimationX(true),
-          scale: isVisible ? 1 : 0.95
-        }}
-        transition={{ duration: 0.6 }}
-      >
-        <div>
-          <span className="text-primary font-semibold text-xs md:text-sm uppercase tracking-wider">
-            {solution.subtitle}
-          </span>
-          <h3 className="font-display text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mt-2 text-foreground">
-            {solution.title}
-          </h3>
-        </div>
-        
-        <p className="text-base md:text-lg lg:text-xl text-muted-foreground leading-relaxed">
-          {solution.description}
-        </p>
+      <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center relative z-10">
+        {/* Left Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="space-y-8"
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/20 to-cyan-500/20 border border-blue-500/30">
+            <Shield className="w-4 h-4 text-blue-500" />
+            <span className="text-sm font-medium text-blue-600">Enterprise-Grade Security</span>
+          </div>
 
-        <ul className="space-y-2 md:space-y-3 border border-primary rounded-2xl p-4 md:p-7">
-          {solution.features.map((feature, featureIndex) => (
-            <motion.li 
-              key={featureIndex} 
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, x: -20 }}
-              animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ delay: 0.3 + featureIndex * 0.1 }}
-            >
-              <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0" />
-              <span className="text-foreground">{feature}</span>
-            </motion.li>
-          ))}
-        </ul>
+          {/* Title & Description */}
+          <div className="space-y-4">
+            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+              {solution.title}
+              <span className="block text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text">
+                Redefined
+              </span>
+            </h2>
+            <p className="text-xl text-muted-foreground leading-relaxed">
+              {solution.description}
+            </p>
+          </div>
 
-        <Button variant="hero" size="lg" className="group mt-4">
-          Learn More
-          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-        </Button>
-      </motion.div>
-
-      {/* Visual */}
-      <motion.div 
-        className="flex-1 w-full"
-        initial={{ opacity: 0, x: getAnimationX(false), scale: 0.95 }}
-        animate={{ 
-          opacity: isVisible ? 1 : 0, 
-          x: isVisible ? 0 : getAnimationX(false),
-          scale: isVisible ? 1 : 0.95
-        }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        style={{ transformStyle: 'preserve-3d' }}
-      >
-        <div className="relative">
-          {/* Background Stack Layers */}
-          <motion.div 
-            className="absolute inset-0 glass-card rounded-3xl opacity-20"
-            initial={{ y: 20, scale: 0.95 }}
-            animate={isVisible ? { y: 12, scale: 0.97 } : { y: 20, scale: 0.95 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            style={{ transform: 'translateZ(-20px)' }}
-          />
-          <motion.div 
-            className="absolute inset-0 glass-card rounded-3xl opacity-40"
-            initial={{ y: 10, scale: 0.97 }}
-            animate={isVisible ? { y: 6, scale: 0.985 } : { y: 10, scale: 0.97 }}
-            transition={{ duration: 0.6, delay: 0.35 }}
-            style={{ transform: 'translateZ(-10px)' }}
-          />
-
-          {/* Main Card */}
-          <motion.div 
-            className="glass-card p-8 rounded-3xl relative overflow-hidden group hover:shadow-[0_0_60px_hsl(204_88%_53%/0.15)] transition-all duration-500 hover:-translate-y-2"
-            initial={{ y: 0 }}
-            animate={isVisible ? { y: 0 } : { y: 0 }}
-            whileHover={{ scale: 1.02, rotateY: 2 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/10 opacity-50" />
-            
-            {/* Mock Content */}
-            <div className="relative z-10 aspect-video flex items-center justify-center">
-              {solution.image === "voice" || solution.image === "video" ? (
-                // Video for AI Voice Agent and AI Video Calling
-                <motion.div 
-                  className="w-full h-full rounded-2xl overflow-hidden bg-muted/30"
-                  initial={{ opacity: 0 }}
-                  animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-                  transition={{ delay: 0.4 }}
+          {/* Stats Grid */}
+          <div className="grid grid-cols-2 gap-4">
+            {solution.stats.map((stat, idx) => {
+              const Icon = stat.icon;
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-500/30 transition-all duration-300 group"
                 >
-                  <video
-                    className="w-full h-full object-contain border-2 border-primary bg-primary"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  >
-                    {solution.image === "voice" ? (
-                      <source className="w-full h-full object-contain rounded-2xl" src="/Ai_voice_agent.mp4" type="video/mp4" />
-                    ) : (
-                      <source className="w-full h-full object-contain rounded-2xl" src="/AI_video_call.mp4" type="video/mp4" />
-                    )}
-                    <div className="w-full h-full bg-muted/30 rounded-2xl flex items-center justify-center">
-                      <div className="text-center">
-                        <motion.div 
-                          className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center animate-pulse-glow"
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={isVisible ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                          transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
-                        >
-                          <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={solution.image === "voice" ? "M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" : "M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"} />
-                          </svg>
-                        </motion.div>
-                        <motion.p 
-                          className="text-muted-foreground font-medium"
-                          initial={{ opacity: 0 }}
-                          animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-                          transition={{ delay: 0.7 }}
-                        >
-                          Interactive Demo
-                        </motion.p>
-                      </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
+                      <Icon className="w-5 h-5 text-blue-500" />
                     </div>
-                  </video>
-                </motion.div>
-              ) : (
-                // Original mock content for other solutions
-                <div className="w-full h-full bg-muted/30 rounded-2xl flex items-center justify-center">
-                  <div className="text-center">
-                    <motion.div 
-                      className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center animate-pulse-glow"
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={isVisible ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-                      transition={{ duration: 0.6, delay: 0.5, type: "spring", stiffness: 200 }}
-                    >
-                      {solution.image === "whatsapp" && (
-                        <svg className="w-10 h-10 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                        </svg>
-                      )}
-                    </motion.div>
-                    <motion.p 
-                      className="text-muted-foreground font-medium"
-                      initial={{ opacity: 0 }}
-                      animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
-                      transition={{ delay: 0.7 }}
-                    >
-                      Interactive Demo
-                    </motion.p>
+                    <div>
+                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          </motion.div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-          {/* Decorative Elements with Stack Animation */}
-          <motion.div 
-            className="absolute -top-4 -right-4 w-24 h-24 rounded-2xl gradient-border opacity-40 animate-float" 
-            style={{ animationDelay: `${index}s` }}
-            initial={{ scale: 0, rotate: -90 }}
-            animate={isVisible ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -90 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-          />
-          <motion.div 
-            className="absolute -bottom-4 -left-4 w-16 h-16 rounded-full gradient-border opacity-30 animate-float" 
-            style={{ animationDelay: `${index + 1}s` }}
-            initial={{ scale: 0, rotate: 90 }}
-            animate={isVisible ? { scale: 1, rotate: 0 } : { scale: 0, rotate: 90 }}
-            transition={{ duration: 0.5, delay: 0.65 }}
-          />
-        </div>
-      </motion.div>
+          {/* Features Grid */}
+          <div className="grid gap-4">
+            {solution.features.slice(0, 4).map((feature, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 + 0.4 }}
+                className="flex items-start gap-3 group"
+              >
+                <div className="w-6 h-6 rounded-full bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <CheckCircle2 className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-foreground group-hover:text-blue-600 transition-colors duration-300">
+                  {feature}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
+            className="flex flex-col sm:flex-row gap-4 pt-4"
+          >
+            <Button
+              size="lg"
+              className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group"
+            >
+              Start Free Trial
+              <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-2 hover:border-blue-500 hover:bg-blue-50/50 transition-all duration-300"
+            >
+              Schedule Demo
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Visual */}
+        <motion.div
+          initial={{ opacity: 0, x: 60, scale: 0.95 }}
+          whileInView={{ opacity: 1, x: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative"
+        >
+
+          {/* Main Video Container */}
+          <div className="relative rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl group">
+            
+
+            {/* Video Container */}
+            <div className="relative aspect-video bg-gradient-to-br from-gray-900 to-gray-950">
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                src={solution.videoSrc}
+                loop
+                muted={!isPlaying}
+                playsInline
+                poster="/Real-time-video-call.mp4"
+              />
+              
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-gray-900/30" />
+              
+              {/* AI Features Overlay */}
+              <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs text-white">Live Transcription Active</span>
+                </div>
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
+                  <Globe className="w-3 h-3 text-blue-400" />
+                  <span className="text-xs text-white">12 Languages Detected</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Play Button Overlay */}
+            <motion.button
+              onClick={handlePlayVideo}
+              className="absolute inset-0 flex items-center justify-center group/play"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              {!isPlaying && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-600/90 to-cyan-500/90 backdrop-blur-sm border border-white/20 flex items-center justify-center shadow-2xl group-hover/play:from-blue-500 group-hover/play:to-cyan-400"
+                >
+                  <Play className="w-8 h-8 text-white ml-1" />
+                </motion.div>
+              )}
+            </motion.button>
+          </div>
+
+          {/* Floating Stats Cards */}
+          <motion.div
+            className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4"
+            initial={{ y: 20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+          >
+            {[
+              { label: "Active Users", value: "10K+", color: "from-blue-500 to-cyan-500" },
+              { label: "Uptime", value: "99.9%", color: "from-green-500 to-emerald-500" },
+              { label: "Satisfaction", value: "4.9/5", color: "from-amber-500 to-orange-500" },
+            ].map((stat, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -5 }}
+                className="px-4 py-3 rounded-xl bg-white/95 backdrop-blur-sm border border-white/20 shadow-lg"
+              >
+                <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                  {stat.value}
+                </div>
+                <div className="text-xs text-gray-600">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Background Pattern */}
+      <div className="absolute inset-0 -z-10 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.1)_1px,transparent_0)] bg-[length:40px_40px]" />
+      </div>
     </div>
   );
 };
 
 const SolutionsSection = () => {
-  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation();
-
   return (
-    <section id="solutions" className="mobile-section-padding relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-[150px]" />
+    <section id="solutions" className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+      {/* Animated Background */}
+      <div className="absolute inset-0">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-b from-background via-blue-50/5 to-background"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        />
+      </div>
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         {/* Section Header */}
-        <div 
-          ref={headerRef}
-          className={`text-center max-w-3xl mx-auto mb-12 md:mb-20 scroll-animate ${headerVisible ? 'animate-in' : ''}`}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center max-w-4xl mx-auto mb-20"
         >
-          <span className="text-primary font-semibold tracking-wider uppercase text-sm mb-4 block">
-            Solutions
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 text-foreground">
-            Powerful Tools for
-            <br />
-            <span className="gradient-text">Every Use Case</span>
-          </h2>
-        </div>
+          <motion.span
+            initial={{ width: 0 }}
+            whileInView={{ width: "120px" }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="inline-block h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-6"
+          />
+          
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20">
+              <Zap className="w-4 h-4 text-blue-500" />
+              <span className="text-sm font-medium text-blue-600">Powered by AI</span>
+            </div>
+            
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Enterprise Video
+              <span className="block text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text animate-gradient">
+                Communication Platform
+              </span>
+            </h1>
+            
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Everything you need for professional video communication, powered by cutting-edge AI technology.
+            </p>
+          </div>
+        </motion.div>
 
-        {/* Solutions */}
-        <div className="space-y-16 md:space-y-24 lg:space-y-32">
+        {/* Main Solution */}
+        <div className="mb-32">
           {solutions.map((solution, index) => (
             <SolutionItem key={index} solution={solution} index={index} />
           ))}
         </div>
+
+        {/* Trust Badges */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center border-t border-white/10 pt-16"
+        >
+          <p className="text-sm text-muted-foreground mb-8 uppercase tracking-wider">
+            Trusted by forward-thinking companies
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+            {["Google", "Microsoft", "Amazon", "Spotify", "Netflix", "Airbnb"].map((company, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ scale: 1.1, opacity: 1 }}
+                className="text-2xl font-bold text-foreground/40 hover:text-foreground/60 transition-colors duration-300"
+              >
+                {company}
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
 };
+
+// Add to your global CSS or Tailwind config:
+// Add these animations to your global CSS
+const styles = `
+@keyframes gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 3s ease-in-out infinite;
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.gradient-border {
+  position: relative;
+  background: linear-gradient(45deg, #3b82f6, #06b6d4, #8b5cf6, #ec4899);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: hsl(var(--background));
+  border-radius: inherit;
+}
+`;
 
 export default SolutionsSection;

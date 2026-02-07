@@ -3,24 +3,24 @@ import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const testimonials = [
   {
-    quote: "BeyondChatsAI transformed our customer support. We've reduced response times by 80% while maintaining high satisfaction scores.",
+    quote: "The AI video call platform has revolutionized our global meetings. Real-time translation in 100+ languages means we can collaborate seamlessly with teams worldwide.",
     author: "Sarah Chen",
-    role: "VP of Customer Success",
+    role: "VP of Global Operations",
     company: "TechFlow Inc.",
     avatar: "SC",
   },
   {
-    quote: "The AI video calling features are incredible. Real-time translation has opened up new markets we couldn't reach before.",
+    quote: "Crystal-clear 4K video quality and AI-powered meeting summaries have boosted our productivity by 40%. We never miss important action items anymore.",
     author: "Marcus Rodriguez",
-    role: "Head of Sales",
+    role: "Head of Product",
     company: "GlobalReach",
     avatar: "MR",
   },
   {
-    quote: "Bulk WhatsApp messaging at this scale with such precision targeting? Game-changer for our marketing campaigns.",
+    quote: "The live transcription feature is a game-changer. Every word is captured accurately, making our video calls accessible and searchable. Absolutely incredible!",
     author: "Emily Watson",
-    role: "CMO",
-    company: "Growth Labs",
+    role: "Director of Engineering",
+    company: "Innovation Labs",
     avatar: "EW",
   },
 ];
