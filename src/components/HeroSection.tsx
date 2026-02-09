@@ -46,7 +46,7 @@ const HeroSection = () => {
             {/* Headline */}
             <h1 
               ref={headlineRef}
-              className={`font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 scroll-animate stagger-1 ${headlineVisible ? 'animate-in' : ''}`}
+              className={`font-display text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-4 md:mb-6 scroll-animate stagger-1 ${headlineVisible ? 'animate-in' : ''}`}
             >
               AI-Powered
               <br />
@@ -56,10 +56,10 @@ const HeroSection = () => {
             {/* Subheadline */}
             <p 
               ref={subRef}
-              className={`text-xl md:text-2xl text-muted-foreground mb-10 text-balance scroll-animate stagger-2 ${subVisible ? 'animate-in' : ''}`}
+              className={`text-lg md:text-2xl text-muted-foreground mb-8 md:mb-10 text-balance scroll-animate stagger-2 ${subVisible ? 'animate-in' : ''}`}
             >
-              Transform your video meetings with AI-powered transcription, real-time translation, 
-              and intelligent summaries. Crystal-clear 4K video meets enterprise-grade intelligence.
+              Transform your meetings with AI-powered transcription, translation, 
+              and summaries. Crystal-clear 4K video meets enterprise intelligence.
             </p>
         
 
@@ -69,7 +69,7 @@ const HeroSection = () => {
               className={`flex flex-col sm:flex-row items-center lg:items-start justify-center lg:justify-start gap-4 mb-16 scroll-animate stagger-3 ${ctaVisible ? 'animate-in' : ''}`}
             >
               <Button variant="hero" size="xl" className="group">
-                Start Free Trial
+                Try out for free
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
               <Button variant="glass" size="xl" className="group">
@@ -81,19 +81,19 @@ const HeroSection = () => {
             {/* Stats */}
             <div 
               ref={statsRef}
-              className={`grid grid-cols-2 gap-8 scroll-animate stagger-4 ${statsVisible ? 'animate-in' : ''}`}
+              className={`grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 scroll-animate stagger-4 ${statsVisible ? 'animate-in' : ''}`}
             >
               {[
-                { value: "50M+", label: "Video Calls" },
-                { value: "100+", label: "Languages" },
-                { value: "4K", label: "Video Quality" },
+                { value: "50M+", label: "Calls" },
+                { value: "100+", label: "Langs" },
+                { value: "4K", label: "Video" },
                 { value: "<100ms", label: "Latency" },
               ].map((stat, index) => (
                 <div key={index} className="text-center lg:text-left">
-                  <div className="font-display text-3xl md:text-4xl font-bold gradient-text mb-2">
+                  <div className="font-display text-2xl md:text-4xl font-bold gradient-text mb-1 md:mb-2">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>

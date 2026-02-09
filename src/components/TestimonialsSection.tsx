@@ -53,11 +53,11 @@ const TestimonialsSection = () => {
           <p className="text-center text-sm md:text-base text-muted-foreground mb-6 md:mb-8">
             Trusted by leading companies worldwide
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-8 lg:gap-16">
+          <div className="flex flex-wrap justify-center items-center gap-4 md:gap-8 lg:gap-16">
             {logos.map((logo, index) => (
               <div
                 key={index}
-                className="text-lg md:text-xl lg:text-2xl font-display font-bold text-muted-foreground/40 hover:text-primary/60 transition-colors"
+                className="text-sm md:text-xl lg:text-2xl font-display font-bold text-muted-foreground/40 hover:text-primary/60 transition-colors"
               >
                 {logo}
               </div>
@@ -98,7 +98,7 @@ const TestimonialsSection = () => {
               </div>
 
               {/* Quote */}
-              <p className="text-base md:text-lg text-foreground mb-6 md:mb-8 leading-relaxed">
+              <p className="text-sm md:text-lg text-foreground mb-4 md:mb-8 leading-relaxed">
                 "{testimonial.quote}"
               </p>
 

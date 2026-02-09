@@ -2,7 +2,7 @@ import { Zap, Mail, Phone, MapPin, TwitterIcon, LinkedinIcon, GithubIcon, Youtub
 import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 const footerLinks = {
-  Product: ["Features", "Pricing", "Integrations", "API", "Documentation"],
+  Product: ["Features", "Integrations", "API", "Documentation"],
   Company: ["About", "Blog", "Careers", "Press", "Contact"],
   Resources: ["Help Center", "Community", "Webinars", "Case Studies", "Status"],
   Legal: ["Privacy", "Terms", "Security", "GDPR", "Cookie Policy"],
@@ -29,19 +29,19 @@ const Footer = () => {
                 <Zap className="w-6 h-6 text-primary-foreground" />
               </div>
               <div>
-                <span className="font-display font-bold text-2xl text-foreground">
+                <span className="font-display font-bold text-xl md:text-2xl text-foreground">
                   BeyondChats
                   <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                     AI
                   </span>
                 </span>
-                <p className="text-sm text-muted-foreground mt-1">Enterprise AI Communication Platform</p>
+                <p className="text-xs md:text-sm text-muted-foreground mt-1">Enterprise AI Communication</p>
               </div>
             </div>
             
-            <p className="text-muted-foreground leading-relaxed max-w-md">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-md">
               Transform your business communication with our AI-powered platform. 
-              Trusted by 10,000+ companies worldwide for seamless collaboration.
+              Trusted by 10,000+ companies worldwide.
             </p>
             
             {/* Contact Info */}

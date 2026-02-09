@@ -24,7 +24,7 @@ const Navbar = () => {
       setIsScrolled(window.scrollY > 20);
 
       // Scroll spy - determine active section
-      const sections = ["hero", "features", "how-it-works", "solutions", "testimonials", "pricing", "cta"];
+      const sections = ["hero", "features", "how-it-works", "solutions", "why-choose-us", "testimonials", "cta"];
       const scrollPosition = window.scrollY + 100;
 
       for (const sectionId of sections) {
@@ -45,7 +45,7 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Platform", href: "solutions" },
-    { name: "Pricing", href: "pricing" },
+    { name: "Why Us", href: "why-choose-us" },
     { name: "Customers", href: "testimonials" },
   ];
 
@@ -71,7 +71,7 @@ const Navbar = () => {
 
   return (
     <motion.nav 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-background/95 backdrop-blur-xl border-b border-border py-4 shadow-sm" : "bg-transparent py-6"}`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-5 ${isScrolled ? "bg-background/95 backdrop-blur-xl border-b border-border py-4 shadow-sm" : "bg-transparent py-6"}`}
       initial={{ y: 0 }}
       animate={{ 
         y: scrollDirection === 'down' && isScrolled ? -100 : 0 
@@ -84,10 +84,10 @@ const Navbar = () => {
       <div className="container mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
         <a href="#" onClick={handleLogoClick} className="flex items-center gap-2 group cursor-pointer">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(204_88%_53%/0.4)] transition-all duration-300">
-            <Zap className="w-5 h-5 text-primary-foreground" />
+          <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-gradient-to-br from-primary to-[hsl(220_80%_60%)] flex items-center justify-center group-hover:shadow-[0_0_30px_hsl(204_88%_53%/0.4)] transition-all duration-300">
+            <Zap className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
           </div>
-          <span className="font-display font-bold text-xl text-foreground">
+          <span className="font-display font-bold text-lg md:text-xl text-foreground">
             BeyondChats<span className="gradient-text">AI</span>
           </span>
         </a>
@@ -111,7 +111,7 @@ const Navbar = () => {
           <ThemeToggle />
           <Button variant="ghost">Log in</Button>
           <Button variant="hero" size="lg">
-            Get Started Free
+            Try out for free
           </Button>
         </div>
 
@@ -173,7 +173,7 @@ const Navbar = () => {
                 Log in
               </Button>
               <Button variant="hero" className="w-full">
-                Get Started Free
+                Try out for free
               </Button>
             </div>
           </div>

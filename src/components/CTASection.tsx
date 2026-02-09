@@ -27,7 +27,7 @@ const CTASection = () => {
               <div className="inline-flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full mb-8">
                 <Sparkles className="w-4 h-4 text-primary" />
                 <span className="text-sm text-primary font-medium">
-                  Start your free trial today
+                  Try out for free
                 </span>
               </div>
 
@@ -43,17 +43,11 @@ const CTASection = () => {
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Button variant="hero" size="xl" className="group">
-                  Get Started Free
+                  Try out for free
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="glass" size="xl">
-                  Talk to Sales
                 </Button>
               </div>
 
-              <p className="text-sm text-muted-foreground mt-8">
-                No credit card required • 14-day free trial • Cancel anytime
-              </p>
             </div>
 
             {/* Decorative Elements - Hidden on mobile */}

@@ -64,7 +64,7 @@ const HowItWorksSection = () => {
           trigger: containerRef.current,
           start: "top 70%",
           end: "bottom center",
-          scrub: 0.5,
+          scrub: window.innerWidth < 768 ? false : 0.5,
           toggleActions: "play none none reverse",
         },
       });
@@ -263,7 +263,7 @@ const HowItWorksSection = () => {
             Four Simple Steps to
             <br />
             <span className="gradient-text bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-              Smarter Video Calls
+              Smarter Meetings
             </span>
           </h2>
           <p className="section-subtitle text-lg md:text-xl text-muted-foreground">
@@ -279,7 +279,7 @@ const HowItWorksSection = () => {
               ref={(el) => (cardsRef.current[index] = el)}
               className="relative transform-gpu"
             >
-              <div className="glass-card rounded-3xl p-8 md:p-12 border border-primary/10 hover:border-primary/30 transition-all duration-500 bg-gradient-to-br from-background/50 to-background/80 backdrop-blur-xl shadow-lg hover:shadow-2xl">
+              <div className="glass-card rounded-3xl p-6 md:p-12 border border-primary/10 hover:border-primary/30 transition-all duration-500 bg-gradient-to-br from-background/50 to-background/80 backdrop-blur-xl shadow-lg hover:shadow-2xl">
                 {/* Card Content */}
                 <div className="grid md:grid-cols-2 gap-8 items-center">
                   {/* Left: Content */}
@@ -294,10 +294,10 @@ const HowItWorksSection = () => {
                     </div>
                     
                     <div>
-                      <h3 className="font-display text-2xl md:text-3xl font-bold mb-4 text-foreground">
+                      <h3 className="font-display text-xl md:text-3xl font-bold mb-3 md:mb-4 text-foreground">
                         {step.title}
                       </h3>
-                      <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                      <p className="text-sm md:text-lg text-muted-foreground leading-relaxed">
                         {step.description}
                       </p>
                     </div>
@@ -363,7 +363,7 @@ const HowItWorksSection = () => {
               href="#pricing"
               className="group relative inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105 overflow-hidden"
             >
-              <span className="relative z-10">Get Started Free</span>
+              <span className="relative z-10">Try out for free</span>
               <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
             <a
@@ -374,9 +374,6 @@ const HowItWorksSection = () => {
               <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           </div>
-          <p className="text-sm text-muted-foreground mt-4">
-            No credit card required • Free 14-day trial
-          </p>
         </div>
       </div>
     </section>

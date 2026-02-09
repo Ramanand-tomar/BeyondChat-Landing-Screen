@@ -55,9 +55,9 @@ const WhyChooseUsSection = () => {
             Why Choose Us
           </span>
           <h2 className="font-display text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6">
-            The Best Video Call
+            The Best Platform
             <br />
-            <span className="gradient-text">Platform for Teams</span>
+            <span className="gradient-text">for Global Teams</span>
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground text-balance">
             Join thousands of companies that trust us to power their video communication infrastructure
@@ -81,7 +81,7 @@ const WhyChooseUsSection = () => {
               <img 
                 src="/Multi-ai-agent.avif" 
                 alt="Multi AI Agent System" 
-                className="w-full h-auto rounded-2xl shadow-[0_0_60px_hsl(204_88%_53%/0.3)]"
+                className="w-full scale-[1.1] h-auto rounded-2xl shadow-[0_0_60px_hsl(204_88%_53%/0.3)]"
               />
             </div>
             
@@ -115,10 +115,10 @@ const WhyChooseUsSection = () => {
                   
                   {/* Content */}
                   <div className="flex-1">
-                    <h3 className="font-display text-lg md:text-xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                    <h3 className="font-display text-base md:text-xl font-bold mb-1 md:mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
                       {reason.title}
                     </h3>
-                    <p className="text-muted-foreground leading-relaxed">
+                    <p className="text-xs md:text-base text-muted-foreground leading-relaxed">
                       {reason.description}
                     </p>
                   </div>

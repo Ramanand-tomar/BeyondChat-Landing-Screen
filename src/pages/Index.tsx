@@ -4,7 +4,6 @@ import FeaturesSection from "@/components/FeaturesSection";
 import HowItWorksSection from "@/components/HowItWorksSection";
 import SolutionsSection from "@/components/SolutionsSection";
 import WhyChooseUsSection from "@/components/WhyChooseUsSection";
-import PricingSection from "@/components/PricingSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
@@ -17,11 +16,10 @@ const Index = () => {
   const { ref: solutionsRef, isVisible: solutionsVisible } = useScrollAnimation(0.15);
   const { ref: whyChooseRef, isVisible: whyChooseVisible } = useScrollAnimation(0.15);
   const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollAnimation(0.15);
-  const { ref: pricingRef, isVisible: pricingVisible } = useScrollAnimation(0.15);
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollAnimation(0.15);
 
   return (
-    <div className="min-h-screen bg-background overflow-x-hidden">
+    <div className="min-h-screen bg-background overflow-x-hidden px-6">
       <Navbar />
       <main>
         <div id="hero" className="page-transition">
@@ -66,14 +64,6 @@ const Index = () => {
           className={`scroll-animate-scale ${testimonialsVisible ? 'animate-in' : ''}`}
         >
           <TestimonialsSection />
-        </div>
-        
-        <div 
-          id="pricing" 
-          ref={pricingRef}
-          className={`scroll-animate-right ${pricingVisible ? 'animate-in' : ''}`}
-        >
-          <PricingSection />
         </div>
         
         <div 

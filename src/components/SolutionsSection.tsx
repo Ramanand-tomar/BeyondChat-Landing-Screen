@@ -83,8 +83,8 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
           </div>
 
           {/* Title & Description */}
-          <div className="space-y-4">
-            <h2 className="text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight">
+          <div className="space-y-2">
+            <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold tracking-tight">
               {solution.title}
               <span className="block text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text">
                 Redefined
@@ -106,15 +106,15 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-500/30 transition-all duration-300 group"
+                  className="p-1  xl:p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-blue-500/30 transition-all duration-300 group"
                 >
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center">
                       <Icon className="w-5 h-5 text-blue-500" />
                     </div>
                     <div>
-                      <div className="text-2xl font-bold text-foreground">{stat.value}</div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
+                      <div className="text-lg md:text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-[10px] md:text-sm text-muted-foreground whitespace-nowrap">{stat.label}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -155,7 +155,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-cyan-500 hover:from-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group"
             >
-              Start Free Trial
+              Try out for free
               <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button
@@ -230,7 +230,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
 
           {/* Floating Stats Cards */}
           <motion.div
-            className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex gap-4"
+            className="relative lg:absolute mt-8 lg:-bottom-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex flex-wrap justify-center gap-3 md:gap-4"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
@@ -244,12 +244,12 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
               <motion.div
                 key={idx}
                 whileHover={{ y: -5 }}
-                className="px-4 py-3 rounded-xl bg-white/95 backdrop-blur-sm border border-white/20 shadow-lg"
+                className="px-3 md:px-4 py-2 md:py-3 rounded-xl bg-white/95 backdrop-blur-sm border border-white/20 shadow-lg min-w-[100px] md:min-w-0 text-center md:text-left"
               >
-                <div className={`text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
+                <div className={`text-lg md:text-2xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
                   {stat.value}
                 </div>
-                <div className="text-xs text-gray-600">{stat.label}</div>
+                <div className="text-[10px] md:text-xs text-gray-600 uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -266,7 +266,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
 
 const SolutionsSection = () => {
   return (
-    <section id="solutions" className="relative py-20 md:py-32 lg:py-40 overflow-hidden">
+    <section id="solutions" className="relative mobile-section-padding overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
         <motion.div
@@ -284,7 +284,7 @@ const SolutionsSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center max-w-4xl mx-auto mb-20"
+          className="text-center max-w-4xl mx-auto mb-12 md:mb-20"
         >
           <motion.span
             initial={{ width: 0 }}
@@ -300,14 +300,14 @@ const SolutionsSection = () => {
               <span className="text-sm font-medium text-blue-600">Powered by AI</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
               Enterprise Video
               <span className="block text-transparent bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 bg-clip-text animate-gradient">
-                Communication Platform
+                Platform
               </span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            <p className="text-lg md:text-2xl text-muted-foreground max-w-3xl mx-auto leading-relaxed px-4 md:px-0">
               Everything you need for professional video communication, powered by cutting-edge AI technology.
             </p>
           </div>
@@ -331,12 +331,12 @@ const SolutionsSection = () => {
           <p className="text-sm text-muted-foreground mb-8 uppercase tracking-wider">
             Trusted by forward-thinking companies
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-60">
+          <div className="flex flex-wrap justify-center items-center gap-6 md:gap-16 opacity-60">
             {["Google", "Microsoft", "Amazon", "Spotify", "Netflix", "Airbnb"].map((company, idx) => (
               <motion.div
                 key={idx}
                 whileHover={{ scale: 1.1, opacity: 1 }}
-                className="text-2xl font-bold text-foreground/40 hover:text-foreground/60 transition-colors duration-300"
+                className="text-xl md:text-2xl font-bold text-foreground/40 hover:text-foreground/60 transition-colors duration-300"
               >
                 {company}
               </motion.div>
