@@ -47,192 +47,131 @@ const HowItWorksSection = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Reset all cards to initial state
-      cardsRef.current.forEach((card) => {
-        if (card) {
-          gsap.set(card, {
-            y: 50,
-            opacity: 0,
-            scale: 0.95,
-          });
-        }
-      });
+      const mm = gsap.matchMedia();
 
-      // Create a master timeline for staggered card animations
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 70%",
-          end: "bottom center",
-          scrub: window.innerWidth < 768 ? false : 0.5,
-          toggleActions: "play none none reverse",
-        },
-      });
+      mm.add({
+        isDesktop: "(min-width: 768px)",
+        isMobile: "(max-width: 767px)",
+      }, (context) => {
+        const { isDesktop } = (context.conditions || {}) as { isDesktop: boolean };
 
-      // Staggered card animations with smooth entrance
-      cardsRef.current.forEach((card, index) => {
-        if (card) {
-          tl.to(card, {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: "power2.out",
-          }, index * 0.15);
+        // Card animations
+        cardsRef.current.forEach((card, index) => {
+          if (!card) return;
 
-          // Add subtle parallax effect to images
-          const image = card.querySelector('img, video');
-          if (image) {
-            tl.to(image, {
-              y: -20,
-              scale: 1.02,
-              duration: 1,
-              ease: "none",
-            }, index * 0.15);
-          }
-        }
-      });
+          const video = card.querySelector('video');
+          const badge = card.querySelector('.step-badge');
+          const icon = card.querySelector(`.card-icon-${index}`);
+          const isLast = index === cardsRef.current.length - 1;
 
-      // Active state animation for cards
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-
-        const isLast = index === cardsRef.current.length - 1;
-        
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top center",
-          end: isLast ? "bottom center" : "bottom top",
-          onEnter: () => {
-            // Animate active card
-            gsap.to(card, {
-              scale: 1.02,
-              boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
-              duration: 0.3,
-              ease: "power2.out",
-            });
-            
-            // Animate icon
-            const icon = card.querySelector(`.card-icon-${index}`);
-            if (icon) {
-              gsap.to(icon, {
-                scale: 1.1,
-                duration: 0.3,
-                ease: "back.out(1.7)",
-              });
-            }
-          },
-          onLeaveBack: () => {
-            // Reset card when leaving
-            gsap.to(card, {
-              scale: 1,
-              boxShadow: "none",
-              duration: 0.3,
-            });
-            
-            // Reset icon
-            const icon = card.querySelector(`.card-icon-${index}`);
-            if (icon) {
-              gsap.to(icon, {
-                scale: 1,
-                duration: 0.3,
-              });
-            }
-          },
-          onLeave: () => {
-            if (!isLast) {
-              // Animate card out when next card enters
-              gsap.to(card, {
-                scale: 0.98,
-                opacity: 0.7,
-                y: -20,
-                duration: 0.5,
-                ease: "power2.inOut",
-              });
-            }
-          },
-          onEnterBack: () => {
-            // Animate card back in when scrolling up
-            gsap.to(card, {
-              scale: 1,
-              opacity: 1,
-              y: 0,
-              duration: 0.5,
-              ease: "power2.out",
-            });
-          },
-        });
-      });
-
-      // Number badge animations
-      cardsRef.current.forEach((card, index) => {
-        if (!card) return;
-        
-        const badge = card.querySelector('.step-badge');
-        if (badge) {
+          // Unified Trigger for entrance and state
           ScrollTrigger.create({
             trigger: card,
-            start: "top center",
-            end: "bottom center",
+            start: "top 85%",
+            end: isLast ? "bottom center" : "bottom top",
+            toggleActions: "play none none reverse",
             onEnter: () => {
-              gsap.fromTo(badge,
-                { rotation: -10, scale: 0 },
-                {
-                  rotation: 0,
+              // Entrance animation
+              gsap.to(card, {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                duration: 0.8,
+                ease: "power2.out",
+              });
+
+              // Play video if near center
+              if (video) {
+                video.play().catch(() => {});
+              }
+
+              // Active card styling
+              gsap.to(card, {
+                scale: 1.02,
+                boxShadow: "0 20px 40px rgba(0,0,0,0.1)",
+                duration: 0.3,
+              });
+
+              if (icon) gsap.to(icon, { scale: 1.1, duration: 0.3, ease: "back.out(1.7)" });
+              if (badge) {
+                gsap.fromTo(badge, 
+                  { rotation: -10, scale: 0 }, 
+                  { rotation: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }
+                );
+              }
+            },
+            onLeave: () => {
+              if (video) video.pause();
+              if (!isLast) {
+                gsap.to(card, {
                   scale: 1,
-                  duration: 0.5,
-                  ease: "back.out(1.7)",
-                }
-              );
+                  opacity: 0.4,
+                  y: -30,
+                  duration: 0.6,
+                  ease: "power2.inOut",
+                  overwrite: true
+                });
+              }
+            },
+            onEnterBack: () => {
+              if (video) video.play().catch(() => {});
+              gsap.to(card, {
+                scale: 1.02,
+                opacity: 1,
+                y: 0,
+                duration: 0.5,
+                ease: "power2.out",
+                overwrite: true
+              });
+            },
+            onLeaveBack: () => {
+              if (video) video.pause();
+              gsap.to(card, {
+                scale: 0.95,
+                opacity: 0,
+                y: 30,
+                boxShadow: "none",
+                duration: 0.5,
+                overwrite: true
+              });
+              if (icon) gsap.to(icon, { scale: 1, duration: 0.3 });
             },
           });
-        }
-      });
+        });
 
-      // Enhanced header animation
-      gsap.from(".how-it-works-header", {
-        scrollTrigger: {
-          trigger: ".how-it-works-header",
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.2,
-      });
 
-      // Animate subtitle separately
-      gsap.from(".section-subtitle", {
-        scrollTrigger: {
-          trigger: ".how-it-works-header",
-          start: "top 85%",
-          toggleActions: "play none none reverse",
-        },
-        y: 30,
-        opacity: 0,
-        duration: 0.8,
-        delay: 0.3,
-        ease: "power2.out",
-      });
+        // Header and CTA animations
+        gsap.from([".how-it-works-header", ".section-subtitle"], {
+          scrollTrigger: {
+            trigger: ".how-it-works-header",
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.2,
+          ease: "power3.out",
+        });
 
-      // CTA animation
-      gsap.from(".cta-container", {
-        scrollTrigger: {
-          trigger: ".cta-container",
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        ease: "power2.out",
+        gsap.from(".cta-container", {
+          scrollTrigger: {
+            trigger: ".cta-container",
+            start: "top 90%",
+            toggleActions: "play none none reverse",
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.8,
+          ease: "power2.out",
+        });
       });
 
     }, sectionRef);
 
-    return () => ctx.revert();
+    return () => {
+      ctx.revert();
+    };
   }, []);
 
   return (
@@ -274,11 +213,11 @@ const HowItWorksSection = () => {
         {/* Stacked Cards */}
         <div ref={containerRef} className="max-w-4xl mx-auto space-y-8">
           {steps.map((step, index) => (
-            <div
-              key={step.id}
-              ref={(el) => (cardsRef.current[index] = el)}
-              className="relative transform-gpu"
-            >
+              <div
+                key={step.id}
+                ref={(el) => (cardsRef.current[index] = el)}
+                className="relative transform-gpu will-change-[transform,opacity] opacity-0 translate-y-8"
+              >
               <div className="glass-card rounded-3xl p-6 md:p-12 border border-primary/10 hover:border-primary/30 transition-all duration-500 bg-gradient-to-br from-background/50 to-background/80 backdrop-blur-xl shadow-lg hover:shadow-2xl">
                 {/* Card Content */}
                 <div className="grid md:grid-cols-2 gap-8 items-center">
@@ -309,7 +248,6 @@ const HowItWorksSection = () => {
                       {step.image.endsWith('.webm') || step.image.endsWith('.mp4') ? (
                         <video
                           className="w-full h-full object-cover"
-                          autoPlay
                           loop
                           muted
                           playsInline

@@ -96,7 +96,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-2 p-1">
             {solution.stats.map((stat, idx) => {
               const Icon = stat.icon;
               return (
@@ -113,7 +113,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
                       <Icon className="w-5 h-5 text-blue-500" />
                     </div>
                     <div>
-                      <div className="text-lg md:text-2xl font-bold text-foreground">{stat.value}</div>
+                      <div className="text-md md:text-xl font-bold text-foreground">{stat.value}</div>
                       <div className="text-[10px] md:text-sm text-muted-foreground whitespace-nowrap">{stat.label}</div>
                     </div>
                   </div>
@@ -197,7 +197,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
               <div className="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-gray-900/30" />
               
               {/* AI Features Overlay */}
-              <div className="absolute bottom-4 left-4 right-4 flex justify-between items-center">
+              <div className="absolute bottom-2 left-4 right-4 flex justify-between items-center">
                 <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 backdrop-blur-sm border border-white/10">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                   <span className="text-xs text-white">Live Transcription Active</span>
@@ -229,7 +229,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
           </div>
 
           {/* Floating Stats Cards */}
-          <motion.div
+          {/* <motion.div
             className="relative lg:absolute mt-8 lg:-bottom-8 lg:left-1/2 lg:transform lg:-translate-x-1/2 flex flex-wrap justify-center gap-3 md:gap-4"
             initial={{ y: 20, opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
@@ -252,7 +252,7 @@ const SolutionItem = ({ solution, index }: { solution: typeof solutions[0]; inde
                 <div className="text-[10px] md:text-xs text-gray-600 uppercase tracking-wider">{stat.label}</div>
               </motion.div>
             ))}
-          </motion.div>
+          </motion.div> */}
         </motion.div>
       </div>
 
